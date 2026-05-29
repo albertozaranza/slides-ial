@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Gramática Histórico-Comparativa — apresentação interativa." />
+    <title>Gramática Histórico-Comparativa</title>
+
+    <!-- Tipografia: Cinzel (rótulos), Playfair Display (títulos), Times (corpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CSS (Play CDN) + tema vintage acadêmico (bege / marrom / dourado / preto) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              paper: {
+                50: "#faf7f0",
+                100: "#f4ecdd",
+                200: "#e9dcc4",
+                300: "#dcc9a6",
+              },
+              brown: {
+                700: "#5a4632",
+                800: "#403021",
+                900: "#2c2016",
+              },
+              gold: {
+                300: "#d9bd74",
+                400: "#c19a3e",
+                500: "#a87f2a",
+                600: "#856420",
+                700: "#6b4f19",
+              },
+            },
+            fontFamily: {
+              display: ['Cinzel', 'Georgia', 'serif'],
+              serif: ['"Playfair Display"', 'Georgia', 'serif'],
+              body: ['"Times New Roman"', 'Times', 'serif'],
+            },
+          },
+        },
+      };
+    </script>
+
+    <!-- CSS customizado mínimo: animação de entrada e respeito a prefers-reduced-motion -->
+    <link rel="stylesheet" href="./styles/app.css" />
+  </head>
+
+  <body class="min-h-screen bg-paper-100 font-body text-brown-900 antialiased">
+    <!-- Pular para o conteúdo (acessibilidade) -->
+    <a href="#app"
+       class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg
+              focus:bg-gold-500 focus:px-4 focus:py-2 focus:font-semibold focus:text-paper-50">
+      Pular para a apresentação
+    </a>
+
+    <main id="app" class="relative h-[100svh] w-full overflow-hidden"
+          role="region" aria-roledescription="apresentação" aria-label="Apresentação de slides">
+      <!-- Palco onde os slides são montados pelo JavaScript -->
+      <div data-stage class="relative h-full w-full"></div>
+
+      <!-- Região aria-live: anuncia o slide atual para leitores de tela -->
+      <div data-live class="sr-only" aria-live="polite" aria-atomic="true"></div>
+    </main>
+
+    <!-- Aplicação (scripts clássicos, na ordem de dependência).
+         Sem módulos ES para funcionar abrindo o index.html direto (file://). -->
+    <script src="./components/richText.js" defer></script>
+    <script src="./components/Slide.js" defer></script>
+    <script src="./components/Controls.js" defer></script>
+    <script src="./data/slides.js" defer></script>
+    <script src="./main.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,49 @@
+/*
+ * app.css — Único CSS customizado do projeto.
+ *
+ * Mantido propositadamente mínimo: contém apenas o que o Tailwind via CDN não
+ * cobre bem de forma declarativa — a animação de entrada dos slides e o
+ * respeito à preferência de redução de movimento. Toda a demais estilização
+ * está em classes Tailwind nos componentes.
+ */
+
+/* Keyframe da entrada (declarado aqui pois o app usa o Tailwind via CDN,
+   que não expõe os keyframes do config como @keyframes globais). */
+@keyframes slide-enter {
+  0% {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animação de entrada do conteúdo do slide ativo.
+   A classe .is-active é alternada pelo Deck (main.js). */
+[data-animate] {
+  opacity: 0;
+}
+
+[data-animate].is-active {
+  animation: slide-enter 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Acessibilidade: quem prefere menos movimento vê transições instantâneas. */
+@media (prefers-reduced-motion: reduce) {
+  [data-animate],
+  [data-animate].is-active {
+    opacity: 1;
+    animation: none;
+  }
+
+  .slide {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Garante que a imagem de fundo nunca apareça abaixo da barra de progresso. */
+.slide {
+  backface-visibility: hidden;
+}
