@@ -12,6 +12,16 @@ window.PresApp = window.PresApp || {};
   const arrow = (dir) =>
     dir === "prev" ? '<path d="M15 19l-7-7 7-7" />' : '<path d="M9 5l7 7-7 7" />';
 
+  // Ícones de tela cheia (entrar) e sair de tela cheia.
+  const fsIcon = {
+    enter:
+      '<path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M16 3h3a2 2 0 0 1 2 2v3" />' +
+      '<path d="M8 21H5a2 2 0 0 1-2-2v-3" /><path d="M16 21h3a2 2 0 0 0 2-2v-3" />',
+    exit:
+      '<path d="M3 8V5a2 2 0 0 1 2-2h3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" />' +
+      '<path d="M3 16v3a2 2 0 0 0 2 2h3" /><path d="M21 16v3a2 2 0 0 1-2 2h-3" />',
+  };
+
   const navButton = (dir, label) => `
     <button type="button" data-nav="${dir}" aria-label="${label}"
       class="pointer-events-auto grid h-11 w-11 place-items-center rounded-full border border-gold-600/40 bg-paper-50/80 text-brown-800 backdrop-blur
@@ -43,6 +53,17 @@ window.PresApp = window.PresApp || {};
         <div data-progress class="h-full bg-gradient-to-r from-gold-600 to-gold-400 transition-[width] duration-500 ease-out" style="width:0%"></div>
       </div>
 
+      <div class="fixed right-3 top-3 z-40 sm:right-5 sm:top-5">
+        <button type="button" data-fullscreen aria-label="Entrar em tela cheia" aria-pressed="false"
+          class="pointer-events-auto grid h-11 w-11 place-items-center rounded-full border border-gold-600/40 bg-paper-50/80 text-brown-800 backdrop-blur
+                 transition hover:border-gold-600 hover:bg-paper-50 hover:text-gold-700
+                 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100
+                 sm:h-12 sm:w-12">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">${fsIcon.enter}</svg>
+        </button>
+      </div>
+
       <div class="fixed inset-y-0 left-0 z-30 flex items-center pl-3 sm:pl-5">${navButton("prev", "Slide anterior")}</div>
       <div class="fixed inset-y-0 right-0 z-30 flex items-center pr-3 sm:pr-5">${navButton("next", "Próximo slide")}</div>
 
@@ -59,6 +80,30 @@ window.PresApp = window.PresApp || {};
     wrap.querySelectorAll("[data-dot]").forEach((d) =>
       d.addEventListener("click", () => onGoto(Number(d.dataset.dot)))
     );
+
+    // Botão de tela cheia (canto superior direito).
+    const fsBtn = wrap.querySelector("[data-fullscreen]");
+    const fsSvg = fsBtn.querySelector("svg");
+
+    function toggleFullscreen() {
+      if (document.fullscreenElement) {
+        (document.exitFullscreen || document.webkitExitFullscreen || (() => {})).call(document);
+      } else {
+        const el = document.documentElement;
+        (el.requestFullscreen || el.webkitRequestFullscreen || (() => {})).call(el);
+      }
+    }
+
+    function syncFullscreen() {
+      const on = !!document.fullscreenElement;
+      fsSvg.innerHTML = on ? fsIcon.exit : fsIcon.enter;
+      fsBtn.setAttribute("aria-pressed", on ? "true" : "false");
+      fsBtn.setAttribute("aria-label", on ? "Sair da tela cheia" : "Entrar em tela cheia");
+    }
+
+    fsBtn.addEventListener("click", toggleFullscreen);
+    document.addEventListener("fullscreenchange", syncFullscreen);
+    document.addEventListener("webkitfullscreenchange", syncFullscreen);
 
     const progress = wrap.querySelector("[data-progress]");
     const current = wrap.querySelector("[data-current]");
