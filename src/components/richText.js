@@ -21,7 +21,7 @@ window.PresApp = window.PresApp || {};
 
   const inline = (str) =>
     escapeHtml(str)
-      .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-gold-700">$1</strong>')
+      .replace(/\*\*(.+?)\*\*/g, '<strong class="font-semibold text-gold-300">$1</strong>')
       .replace(/\*(.+?)\*/g, "<em>$1</em>");
 
   const isListLine = (l) => /^[-*]\s+/.test(l.trim());
@@ -45,7 +45,7 @@ window.PresApp = window.PresApp || {};
     const ths = head
       .map(
         (c) =>
-          `<th scope="col" class="border-b-2 border-gold-600/50 px-4 py-2 text-left font-display text-sm uppercase tracking-wider text-gold-700">${inline(
+          `<th scope="col" class="border-b-2 border-gold-500/50 px-4 py-2 text-left font-display text-sm uppercase tracking-wider text-gold-300">${inline(
             c
           )}</th>`
       )
@@ -54,7 +54,7 @@ window.PresApp = window.PresApp || {};
     const trs = body
       .map(
         (r) =>
-          `<tr class="border-b border-brown-900/10">${r
+          `<tr class="border-b border-paper-100/10">${r
             .map((c) => `<td class="px-4 py-2 align-top">${inline(c)}</td>`)
             .join("")}</tr>`
       )
@@ -107,7 +107,7 @@ window.PresApp = window.PresApp || {};
 
     const li = (it) => {
       const sub = it.children.length
-        ? `<ul class="mt-2 space-y-1.5 pl-6 text-[0.95em] text-brown-700">${it.children
+        ? `<ul class="mt-2 space-y-1.5 pl-6 text-[0.95em] text-paper-300">${it.children
             .map(
               (c) =>
                 `<li class="flex gap-3">${dot}<span>${inline(c)}</span></li>`

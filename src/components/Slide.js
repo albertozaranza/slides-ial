@@ -2,7 +2,7 @@
  * Slide.js
  * Transforma um objeto de dados em uma <section> de slide.
  *
- * Tema: vintage acadêmico minimalista (bege/marrom/dourado/preto). Cada layout
+ * Tema: escuro elegante (fundo espresso + dourado). Cada layout
  * reaproveita blocos comuns (eyebrow, título, corpo, moldura de imagem) para
  * evitar duplicação. Estilização 100% via classes Tailwind.
  * Exposto em PresApp.createSlide (script clássico, roda via file://).
@@ -15,32 +15,32 @@ window.PresApp = window.PresApp || {};
 (function (PresApp) {
   const eyebrow = (text) =>
     text
-      ? `<p class="mb-3 font-display text-xs font-semibold uppercase tracking-[0.3em] text-gold-700 sm:text-sm">${text}</p>`
+      ? `<p class="mb-3 font-display text-xs font-semibold uppercase tracking-[0.3em] text-gold-300 sm:text-sm">${text}</p>`
       : "";
 
   const heading = (text, size) =>
-    `<h2 class="font-serif font-bold leading-tight text-brown-900 ${size}">${text}</h2>`;
+    `<h2 class="slide-title font-serif font-bold leading-tight ${size}">${text}</h2>`;
 
-  const divider = `<div class="mx-auto mt-6 h-px w-24 bg-gradient-to-r from-transparent via-gold-500 to-transparent"></div>`;
+  const divider = `<div class="slide-divider relative mx-auto mt-6 h-px w-24"></div>`;
 
   /** Moldura padrão para imagens, com borda dourada sobre papel. */
   const figure = (src, alt, extra = "") =>
-    `<figure class="group relative overflow-hidden rounded-xl border border-gold-600/40 bg-paper-50 p-1.5 shadow-lg ring-1 ring-brown-900/5 ${extra}">
+    `<figure class="group relative overflow-hidden rounded-xl border border-gold-500/30 bg-paper-50 p-1.5 shadow-2xl shadow-black/50 ${extra}">
        <img src="${src}" alt="${alt}" loading="lazy"
             class="h-full w-full rounded-lg object-contain transition-transform duration-700 will-change-transform group-hover:scale-[1.03]" />
      </figure>`;
 
   /** Cadeia vertical de etapas, ligadas por setas (campo `flow`). */
   const flowBlock = (steps) =>
-    `<div class="mx-auto mt-8 flex max-w-md flex-col items-center gap-2">` +
+    `<div data-stagger class="mx-auto mt-8 flex max-w-md flex-col items-center gap-2">` +
     steps
       .map(
         (step, i) =>
           `${
             i > 0
-              ? '<span aria-hidden="true" class="text-2xl leading-none text-gold-600">↓</span>'
+              ? '<span aria-hidden="true" class="text-2xl leading-none text-gold-400">↓</span>'
               : ""
-          }<div class="w-full rounded-lg border border-gold-600/40 bg-paper-50/80 px-6 py-3 text-center font-serif text-lg text-brown-900 shadow-sm sm:text-xl">${step}</div>`
+          }<div class="w-full rounded-lg border border-gold-500/30 bg-paper-100/5 px-6 py-3 text-center font-serif text-lg text-paper-100 shadow-lg shadow-black/30 backdrop-blur-sm sm:text-xl">${step}</div>`
       )
       .join("") +
     `</div>`;
@@ -53,21 +53,21 @@ window.PresApp = window.PresApp || {};
         ${eyebrow(s.eyebrow)}
         ${heading(s.title, "text-4xl sm:text-6xl lg:text-7xl")}
         ${divider}
-        <div class="mt-6 max-w-2xl space-y-2 text-base text-brown-800 sm:text-lg">${rt(s.body)}</div>
+        <div class="mt-6 max-w-2xl space-y-2 text-base text-paper-200 sm:text-lg">${rt(s.body)}</div>
       </div>`,
 
     section: (s) => `
       <div class="flex h-full flex-col justify-center" data-animate>
         ${eyebrow(s.eyebrow)}
         ${heading(s.title, "text-3xl sm:text-5xl lg:text-6xl")}
-        <div class="mt-6 max-w-3xl text-lg text-brown-800 sm:text-2xl">${rt(s.body)}</div>
+        <div class="mt-6 max-w-3xl text-lg text-paper-200 sm:text-2xl">${rt(s.body)}</div>
       </div>`,
 
     content: (s) => `
       <div class="flex h-full flex-col justify-center" data-animate>
         ${eyebrow(s.eyebrow)}
         ${heading(s.title, "text-3xl sm:text-4xl lg:text-5xl")}
-        <div class="mt-6 max-w-3xl space-y-4 text-base text-brown-800 sm:text-xl">${rt(s.body)}</div>
+        <div class="mt-6 max-w-3xl space-y-4 text-base text-paper-200 sm:text-xl">${rt(s.body)}</div>
         ${s.flow ? flowBlock(s.flow) : ""}
       </div>`,
 
@@ -76,7 +76,7 @@ window.PresApp = window.PresApp || {};
         <div class="order-2 md:order-1">
           ${eyebrow(s.eyebrow)}
           ${heading(s.title, "text-3xl sm:text-4xl lg:text-5xl")}
-          <div class="mt-5 space-y-4 text-base text-brown-800 sm:text-lg">${rt(s.body)}</div>
+          <div class="mt-5 space-y-4 text-base text-paper-200 sm:text-lg">${rt(s.body)}</div>
         </div>
         <div class="order-1 h-56 md:order-2 md:h-[60%] lg:h-[70%]">
           ${figure(s.image, s.title, "h-full")}
@@ -91,7 +91,7 @@ window.PresApp = window.PresApp || {};
         <div>
           ${eyebrow(s.eyebrow)}
           ${heading(s.title, "text-3xl sm:text-4xl lg:text-5xl")}
-          <div class="mt-5 space-y-4 text-base text-brown-800 sm:text-lg">${rt(s.body)}</div>
+          <div class="mt-5 space-y-4 text-base text-paper-200 sm:text-lg">${rt(s.body)}</div>
         </div>
       </div>`,
 
@@ -99,7 +99,7 @@ window.PresApp = window.PresApp || {};
       <div class="flex h-full flex-col justify-center" data-animate>
         ${eyebrow(s.eyebrow)}
         ${heading(s.title, "text-3xl sm:text-4xl lg:text-5xl")}
-        <div class="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-3 sm:gap-6">
+        <div data-stagger class="mt-6 grid gap-4 sm:mt-8 sm:grid-cols-3 sm:gap-6">
           ${(s.items || [])
             .map(
               (it) => `
@@ -107,8 +107,8 @@ window.PresApp = window.PresApp || {};
               <div class="h-28 w-24 sm:h-52 sm:w-44">
                 ${figure(it.image, "Retrato de " + it.caption, "h-full w-full")}
               </div>
-              <figcaption class="mt-3 font-display text-sm uppercase tracking-wider text-brown-900 sm:text-base">${it.caption}</figcaption>
-              ${it.note ? `<p class="mt-1 text-sm italic text-brown-700">${it.note}</p>` : ""}
+              <figcaption class="mt-3 font-display text-sm uppercase tracking-wider text-paper-100 sm:text-base">${it.caption}</figcaption>
+              ${it.note ? `<p class="mt-1 text-sm italic text-paper-300">${it.note}</p>` : ""}
             </figure>`
             )
             .join("")}
@@ -126,7 +126,7 @@ window.PresApp = window.PresApp || {};
         </div>
         ${
           s.body
-            ? `<div class="mt-4 shrink-0 text-sm text-brown-700 sm:text-base">${rt(s.body)}</div>`
+            ? `<div class="mt-4 shrink-0 text-sm text-paper-300 sm:text-base">${rt(s.body)}</div>`
             : ""
         }
       </div>`,
@@ -142,7 +142,7 @@ window.PresApp = window.PresApp || {};
         </div>
         ${
           s.body
-            ? `<figcaption class="mt-4 shrink-0 text-sm italic text-brown-700 sm:text-base">${rt(s.body)}</figcaption>`
+            ? `<figcaption class="mt-4 shrink-0 text-sm italic text-paper-300 sm:text-base">${rt(s.body)}</figcaption>`
             : ""
         }
       </div>`,
@@ -154,7 +154,7 @@ window.PresApp = window.PresApp || {};
         ${s.flow ? flowBlock(s.flow) : ""}
         ${
           s.body
-            ? `<div class="mt-6 max-w-xl text-base text-brown-800 sm:text-lg">${rt(s.body)}</div>`
+            ? `<div class="mt-6 max-w-xl text-base text-paper-200 sm:text-lg">${rt(s.body)}</div>`
             : ""
         }
       </div>`,
@@ -164,7 +164,7 @@ window.PresApp = window.PresApp || {};
         ${eyebrow(s.eyebrow)}
         ${heading(s.title, "text-3xl sm:text-4xl lg:text-5xl")}
         ${divider}
-        <div class="mt-8 max-w-3xl space-y-6 font-serif text-xl italic leading-relaxed text-brown-800 sm:text-2xl">${rt(s.body)}</div>
+        <div class="mt-8 max-w-3xl space-y-6 font-serif text-xl italic leading-relaxed text-paper-200 sm:text-2xl">${rt(s.body)}</div>
       </div>`,
 
     closing: (s) => `
@@ -172,7 +172,7 @@ window.PresApp = window.PresApp || {};
         ${eyebrow(s.eyebrow)}
         ${heading(s.title, "text-4xl sm:text-6xl lg:text-7xl")}
         ${divider}
-        <div class="mt-6 max-w-2xl text-lg text-brown-800 sm:text-2xl">${rt(s.body)}</div>
+        <div class="mt-6 max-w-2xl text-lg text-paper-200 sm:text-2xl">${rt(s.body)}</div>
       </div>`,
   };
 
@@ -186,8 +186,9 @@ window.PresApp = window.PresApp || {};
   PresApp.createSlide = function createSlide(slide, index, total) {
     const section = document.createElement("section");
     section.id = slide.id || `slide-${String(index + 1).padStart(2, "0")}`;
-    section.className =
-      "slide absolute inset-0 flex opacity-0 invisible transition-[opacity] duration-500 ease-out";
+    // A transição (opacidade + zoom + desfoque) é definida em app.css na regra
+    // .slide, para coordenar as três propriedades de uma só vez.
+    section.className = "slide absolute inset-0 flex opacity-0 invisible";
     section.dataset.index = String(index);
 
     section.setAttribute("role", "group");
@@ -197,14 +198,10 @@ window.PresApp = window.PresApp || {};
 
     const render = layouts[slide.layout] || layouts.content;
 
-    // Fundo de papel vintage + véu creme para garantir legibilidade do texto.
-    const bg = slide.background
-      ? `<div class="absolute inset-0 -z-10 bg-cover bg-center" style="background-image:url('${slide.background}')"></div>
-         <div class="absolute inset-0 -z-10 bg-[rgba(244,236,221,0.82)]"></div>`
-      : "";
-
+    // O fundo escuro (gradiente + brilho dourado) é global, definido em
+    // app.css no <body>. Cada slide é transparente e deixa o fundo aparecer,
+    // sem texturas de papel.
     section.innerHTML = `
-      ${bg}
       <div class="mx-auto flex w-full max-w-6xl flex-col px-16 py-14 sm:px-16 sm:py-16 lg:px-20">
         ${render(slide)}
       </div>`;

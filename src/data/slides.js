@@ -26,13 +26,12 @@ window.PRESENTATION_DATA = {
         "**Professor:** Dr. Rafael Lira\n\n" +
         "**Disciplina:** Introdução à Linguística\n\n" +
         "**Data:** 2026",
-      background: "assets/backgrounds/paper-ornate-border.jpeg",
     },
 
     // ───────────── PARTE 1 — INTRODUÇÃO ─────────────
     {
       id: "slide-02",
-      layout: "content",
+      layout: "split",
       eyebrow: "Parte 1 · Introdução",
       title: "O que é Gramática Histórico-Comparativa?",
       body:
@@ -40,7 +39,7 @@ window.PRESENTATION_DATA = {
         "- Estuda a evolução das línguas\n" +
         "- Compara idiomas\n" +
         "- Busca origens comuns",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
+      image: "assets/manuscripts/manuscript-illuminated.jpeg",
     },
     {
       id: "slide-03",
@@ -52,7 +51,6 @@ window.PRESENTATION_DATA = {
         "- Explicar mudanças linguísticas\n" +
         "- Identificar famílias linguísticas\n" +
         "- Entender a origem das palavras",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
 
     // ───────────── PARTE 2 — COMO SURGIU ─────────────
@@ -67,7 +65,6 @@ window.PRESENTATION_DATA = {
         "- Interesse por línguas antigas\n" +
         "- Estudos orientais",
       image: "assets/maps/map-europe-vintage.jpeg",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
     {
       id: "slide-05",
@@ -84,11 +81,10 @@ window.PRESENTATION_DATA = {
         "| Sânscrito | Latim |\n" +
         "| --- | --- |\n" +
         "| matr | mater |",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
     {
       id: "slide-06",
-      layout: "content",
+      layout: "split",
       eyebrow: "Parte 2 · Como surgiu",
       title: "Surgimento da Gramática Histórico-Comparativa",
       body:
@@ -96,7 +92,7 @@ window.PRESENTATION_DATA = {
         "- Método comparativo\n" +
         "- Reconstrução linguística\n" +
         "- Origem comum das línguas",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
+      image: "assets/manuscripts/library-baroque.jpeg",
     },
     {
       id: "slide-07",
@@ -112,7 +108,6 @@ window.PRESENTATION_DATA = {
         "**Exemplos:**\n\n" +
         "- nocte → noite\n" +
         "- lacte → leite",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
     {
       id: "slide-08",
@@ -124,7 +119,6 @@ window.PRESENTATION_DATA = {
         { image: "assets/portraits/portrait-jacob-grimm.jpeg", caption: "Jacob Grimm" },
         { image: "assets/portraits/portrait-linguist-1.jpeg", caption: "Rasmus Rask" },
       ],
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
     {
       id: "slide-09",
@@ -138,17 +132,17 @@ window.PRESENTATION_DATA = {
         "**Ideia principal:**\n\n" +
         "Mudanças linguísticas seguem padrões.",
       image: "assets/portraits/portrait-grimm-brothers.jpeg",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
 
     // ───────────── PARTE 3 — FAMÍLIAS LINGUÍSTICAS ─────────────
     {
       id: "slide-10",
-      layout: "section",
+      layout: "split",
       eyebrow: "Parte 3 · Famílias linguísticas",
       title: "O que são famílias linguísticas?",
-      body: "Grupo de línguas com origem comum.",
-      background: "assets/backgrounds/paper-aged-square.jpeg",
+      body:
+        "Grupo de línguas com **origem comum** — descendentes de uma mesma língua ancestral.",
+      image: "assets/diagrams/tree-language-families-en.jpeg",
     },
     {
       id: "slide-11",
@@ -161,8 +155,7 @@ window.PRESENTATION_DATA = {
         "- Germânicas\n" +
         "- Eslavas\n" +
         "- Indo-arianas",
-      image: "assets/diagrams/tree-indo-european.jpeg",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
+      image: "assets/maps/map-linguas-indoeuropeias.jpeg",
     },
     {
       id: "slide-12",
@@ -177,8 +170,7 @@ window.PRESENTATION_DATA = {
         "- Italiano\n" +
         "- Romeno\n\n" +
         "**Origem:** Latim vulgar",
-      image: "assets/diagrams/illustration-latim.jpeg",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
+      image: "assets/diagrams/diagram-origem-portugues.jpeg",
     },
 
     // ───────────── PARTE 4 — MUDANÇAS LINGUÍSTICAS ─────────────
@@ -192,7 +184,6 @@ window.PRESENTATION_DATA = {
         "- Fonética\n" +
         "- Morfológica\n" +
         "- Semântica",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
     {
       id: "slide-14",
@@ -203,7 +194,6 @@ window.PRESENTATION_DATA = {
         "**Exemplos:**\n\n" +
         "- nocte → noite\n" +
         "- pharmacia → farmácia",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
     {
       id: "slide-15",
@@ -211,7 +201,6 @@ window.PRESENTATION_DATA = {
       eyebrow: "Parte 4 · Mudanças linguísticas",
       title: "Mudanças Morfológicas",
       flow: ["Vossa Mercê", "Vosmecê", "Você"],
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
     {
       id: "slide-16",
@@ -222,13 +211,12 @@ window.PRESENTATION_DATA = {
         '**Exemplo:** "Rapariga"\n\n' +
         "- **Portugal:** moça\n" +
         "- **Brasil:** sentido pejorativo",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
 
     // ───────────── PARTE 5 — IMPORTÂNCIA ─────────────
     {
       id: "slide-17",
-      layout: "content",
+      layout: "split",
       eyebrow: "Parte 5 · Importância",
       title: "Importância da Gramática Histórico-Comparativa",
       body:
@@ -236,7 +224,7 @@ window.PRESENTATION_DATA = {
         "- História dos povos\n" +
         "- Estudos culturais\n" +
         "- Linguística moderna",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
+      image: "assets/manuscripts/still-life-candle-globe.jpeg",
     },
     {
       id: "slide-18",
@@ -250,7 +238,6 @@ window.PRESENTATION_DATA = {
         "- Tradução\n" +
         "- Etimologia\n" +
         "- Ensino de línguas",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
     {
       id: "slide-19",
@@ -263,17 +250,16 @@ window.PRESENTATION_DATA = {
         "| mãe | mother | mutter |\n" +
         "| noite | night | nacht |\n\n" +
         "**Curiosidade:** possuem origem indo-europeia comum.",
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
     },
 
     // ───────────── ENCERRAMENTO ─────────────
     {
       id: "slide-20",
-      layout: "flow",
+      layout: "diagram",
       eyebrow: "Síntese",
       title: "Evolução da Língua Portuguesa",
-      flow: ["Latim vulgar", "Galego-português", "Português arcaico", "Português moderno"],
-      background: "assets/backgrounds/paper-aged-landscape.jpeg",
+      body: "Do **latim vulgar** ao **português moderno**, em sete etapas.",
+      image: "assets/diagrams/infographic-7-etapas.jpeg",
     },
     {
       id: "slide-21",
@@ -283,7 +269,6 @@ window.PRESENTATION_DATA = {
       body:
         '"A Gramática Histórico-Comparativa revelou que as línguas possuem relações históricas profundas."\n\n' +
         '"As línguas evoluem junto com os povos e suas culturas."',
-      background: "assets/backgrounds/paper-ornate-border.jpeg",
     },
     {
       id: "slide-22",
@@ -291,7 +276,6 @@ window.PRESENTATION_DATA = {
       eyebrow: "Encerramento",
       title: "Obrigado!",
       body: "Perguntas?",
-      background: "assets/backgrounds/paper-ornate-border.jpeg",
     },
   ],
 };

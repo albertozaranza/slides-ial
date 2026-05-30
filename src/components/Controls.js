@@ -1,7 +1,7 @@
 /**
  * Controls.js
  * Barra de progresso, botões de navegação (anterior/próximo), contador
- * "atual / total" e indicadores (dots) clicáveis. Tema vintage (claro).
+ * "atual / total" e indicadores (dots) clicáveis. Tema escuro elegante.
  *
  * Componente "burro": renderiza e dispara callbacks; o estado fica no Deck.
  * Exposto em PresApp.createControls (script clássico, roda via file://).
@@ -24,10 +24,10 @@ window.PresApp = window.PresApp || {};
 
   const navButton = (dir, label) => `
     <button type="button" data-nav="${dir}" aria-label="${label}"
-      class="pointer-events-auto grid h-11 w-11 place-items-center rounded-full border border-gold-600/40 bg-paper-50/80 text-brown-800 backdrop-blur
-             transition hover:border-gold-600 hover:bg-paper-50 hover:text-gold-700
-             focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100
-             disabled:cursor-not-allowed disabled:opacity-30 sm:h-12 sm:w-12">
+      class="pointer-events-auto grid h-11 w-11 place-items-center rounded-full border border-gold-500/40 bg-[#1d150d]/60 text-paper-100 shadow-lg shadow-black/40 backdrop-blur-sm
+             transition duration-300 hover:scale-110 hover:border-gold-400 hover:bg-[#1d150d]/85 hover:text-gold-300 hover:shadow-xl active:scale-95
+             focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#14100b]
+             disabled:cursor-not-allowed disabled:opacity-0 sm:h-12 sm:w-12">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
            stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">
         ${arrow(dir)}
@@ -45,19 +45,19 @@ window.PresApp = window.PresApp || {};
 
     const dots = Array.from({ length: total }, (_, i) => `
       <button type="button" data-dot="${i}" aria-label="Ir para o slide ${i + 1}"
-        class="dot pointer-events-auto h-2.5 rounded-full bg-brown-900/20 transition-all duration-300 hover:bg-brown-900/40
-               focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500"></button>`).join("");
+        class="dot pointer-events-auto h-2.5 rounded-full bg-paper-100/25 transition-all duration-300 hover:bg-paper-100/50
+               focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400"></button>`).join("");
 
     wrap.innerHTML = `
-      <div class="fixed inset-x-0 top-0 z-30 h-1 bg-brown-900/10">
-        <div data-progress class="h-full bg-gradient-to-r from-gold-600 to-gold-400 transition-[width] duration-500 ease-out" style="width:0%"></div>
+      <div class="fixed inset-x-0 top-0 z-30 h-1 bg-paper-100/10">
+        <div data-progress class="h-full bg-gradient-to-r from-gold-600 via-gold-400 to-gold-300 shadow-[0_0_10px_rgba(193,154,62,0.7)] transition-[width] duration-500 ease-out" style="width:0%"></div>
       </div>
 
       <div class="fixed right-3 top-3 z-40 sm:right-5 sm:top-5">
         <button type="button" data-fullscreen aria-label="Entrar em tela cheia" aria-pressed="false"
-          class="pointer-events-auto grid h-11 w-11 place-items-center rounded-full border border-gold-600/40 bg-paper-50/80 text-brown-800 backdrop-blur
-                 transition hover:border-gold-600 hover:bg-paper-50 hover:text-gold-700
-                 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-500 focus-visible:ring-offset-2 focus-visible:ring-offset-paper-100
+          class="pointer-events-auto grid h-11 w-11 place-items-center rounded-full border border-gold-500/40 bg-[#1d150d]/60 text-paper-100 shadow-lg shadow-black/40 backdrop-blur-sm
+                 transition duration-300 hover:scale-110 hover:border-gold-400 hover:bg-[#1d150d]/85 hover:text-gold-300 hover:shadow-xl active:scale-95
+                 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#14100b]
                  sm:h-12 sm:w-12">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5" aria-hidden="true">${fsIcon.enter}</svg>
@@ -68,10 +68,10 @@ window.PresApp = window.PresApp || {};
       <div class="fixed inset-y-0 right-0 z-30 flex items-center pr-3 sm:pr-5">${navButton("next", "Próximo slide")}</div>
 
       <div class="fixed inset-x-0 bottom-0 z-30 flex flex-col items-center gap-3 px-4 pb-5 pt-8
-                  bg-gradient-to-t from-paper-100/90 to-transparent">
+                  bg-gradient-to-t from-[#0f0b07] via-[#0f0b07]/70 to-transparent">
         <div data-dots class="flex max-w-full flex-wrap items-center justify-center gap-2">${dots}</div>
-        <p class="font-display text-xs tracking-widest text-brown-700" aria-hidden="true">
-          <span data-current>1</span><span class="mx-1 text-gold-600">/</span><span>${total}</span>
+        <p class="font-display text-xs tracking-widest text-paper-300" aria-hidden="true">
+          <span data-current>1</span><span class="mx-1 text-gold-400">/</span><span>${total}</span>
         </p>
       </div>`;
 
@@ -123,9 +123,9 @@ window.PresApp = window.PresApp || {};
       dotEls.forEach((d, i) => {
         const active = i === index;
         d.classList.toggle("w-6", active);
-        d.classList.toggle("bg-gold-500", active);
+        d.classList.toggle("bg-gold-400", active);
         d.classList.toggle("w-2.5", !active);
-        d.classList.toggle("bg-brown-900/20", !active);
+        d.classList.toggle("bg-paper-100/25", !active);
         d.setAttribute("aria-current", active ? "true" : "false");
       });
     }
